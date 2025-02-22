@@ -5,7 +5,7 @@ import { BsThreeDots } from "react-icons/bs";
 const NavbarMiddleSection = () => {
   return (
     <>
-      <ul className=" flex gap-6 relative items-center">
+      <ul className="hidden lg:flex gap-6 relative items-center">
         {nav_data?.map((item, index) => {
           return (
             <li

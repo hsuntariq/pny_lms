@@ -10,14 +10,14 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="flex px-10 gap-5 justify-between  items-center">
+      <div className="flex px-2 sm:px-10 gap-5 justify-between  items-center">
         <div className="flex items-center gap-2">
           <img
             className="w-[100px]"
             src="https://download.logo.wine/logo/PNY_Technologies/PNY_Technologies-Logo.wine.png"
             alt="pny logo"
           />
-          <div className="bg-blue-100 p-2 rounded-md flex gap-2 items-center">
+          <div className="bg-blue-100 p-2 rounded-md hidden lg:flex gap-2 items-center">
             <BiCategory color="#1A76CD" />
             <Typography
               variant="p"
@@ -33,7 +33,7 @@ const Nav = () => {
 
         {/* search section */}
         <div className="flex gap-3 items-center">
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <TextField
               label="Search"
               name="Search"
@@ -78,7 +78,7 @@ const Nav = () => {
           />
         </div>
       </div>
-      <SmallNav />
+      <SmallNav open={open} />
     </>
   );
 };
