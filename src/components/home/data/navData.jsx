@@ -1,10 +1,12 @@
 import { FaUser } from "react-icons/fa";
 import { FaDashcube } from "react-icons/fa6";
+import { RiArrowDropDownFill } from "react-icons/ri";
 
 export const nav_data = [
   {
     id: 1,
     title: "Demos",
+    icon: <RiArrowDropDownFill size={20} />,
     list: [
       {
         id: 2,
@@ -71,6 +73,8 @@ export const nav_data = [
   {
     id: 14,
     title: "Pages",
+    icon: <RiArrowDropDownFill size={20} />,
+
     list: [
       {
         id: 15,
@@ -126,27 +130,27 @@ export const nav_data = [
         subList: [
           {
             id: 16,
-            title: "Course Categories",
+            title: "About Categories",
           },
           {
             id: 17,
-            title: "Course Categories",
+            title: "About Categories",
           },
           {
             id: 18,
-            title: "Course Categories",
+            title: "About Categories",
           },
           {
             id: 19,
-            title: "Course Categories",
+            title: "About Categories",
           },
           {
             id: 20,
-            title: "Course Categories",
+            title: "About Categories",
           },
           {
             id: 21,
-            title: "Course Categories",
+            title: "About Categories",
           },
         ],
       },
@@ -161,11 +165,11 @@ export const nav_data = [
           },
           {
             id: 24,
-            title: "Course Categories",
+            title: "Hero Categories",
           },
           {
             id: 25,
-            title: "Course Categories",
+            title: "Hero Categories",
           },
         ],
       },
@@ -314,6 +318,8 @@ export const nav_data = [
   },
   {
     id: 4237,
+    icon: <RiArrowDropDownFill size={20} />,
+
     title: "Accounts",
     list: [
       {

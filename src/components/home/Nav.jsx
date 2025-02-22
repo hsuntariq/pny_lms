@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiCategory } from "react-icons/bi";
-import { Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { nav_data } from "./data/navData";
 import { BsThreeDots } from "react-icons/bs";
+import NavbarMiddleSection from "./NavbarMiddleSection";
+import { FaSearch } from "react-icons/fa";
+import SmallNav from "./SmallNav";
 const Nav = () => {
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="flex px-5 gap-5 items-center">
+      <div className="flex px-10 gap-5 justify-between  items-center">
         <div className="flex items-center gap-2">
           <img
             className="w-[100px]"
@@ -24,28 +28,57 @@ const Nav = () => {
           </div>
         </div>
 
-        <ul className=" flex gap-4 relative items-center">
-          {nav_data?.map((item, index) => {
-            return (
-              <li
-                className="text-gray-700 group relative font-semibold cursor-pointer "
-                key={index}
-              >
-                <span className="hover:text-blue-600">{item?.title}</span>
-                <ul className="shadow hidden  absolute  group-hover:block bg-white rounded-3 w-48  gap-3">
-                  {item?.list?.map((item2, index2) => {
-                    return (
-                      <li className="p-1 flex justify-between items-center  hover:bg-gray-200">
-                        {item2?.title} {item2?.subList && <BsThreeDots />}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
-            );
-          })}
-        </ul>
+        {/* navigation */}
+        <NavbarMiddleSection />
+
+        {/* search section */}
+        <div className="flex gap-3 items-center">
+          <div className="relative">
+            <TextField
+              label="Search"
+              name="Search"
+              size="small"
+              placeholder="Search for anything..."
+            />
+            <FaSearch className="absolute top-[50%] -translate-y-[50%] end-2" />
+          </div>
+          {/* icon */}
+
+          <div
+            onClick={() => setOpen(!open)}
+            className="w-5 relative cursor-pointer flex flex-col gap-1"
+          >
+            <div
+              style={{
+                transition: "all 0.3s",
+              }}
+              className={`w-full   ${
+                open && "top-[50%] absolute rotate-[45deg]"
+              } h-[2px] bg-gray-500`}
+            ></div>
+            <div
+              className={`w-full transition ${
+                open && "hidden"
+              }  h-[2px] bg-gray-500`}
+            ></div>
+            <div
+              style={{
+                transition: "all 0.3s",
+              }}
+              className={`w-full ${
+                open && "-top-[50%] absolute -rotate-[45deg]"
+              }    h-[2px] bg-gray-500`}
+            ></div>
+          </div>
+
+          <img
+            src="https://themes.stackbros.in/eduport_r/assets/01-7N0KytgQ.jpg"
+            className="w-[50px] [clip-path:circle()] h-[50px]"
+            alt=""
+          />
+        </div>
       </div>
+      <SmallNav />
     </>
   );
 };
