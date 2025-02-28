@@ -46,7 +46,7 @@ const Nav = () => {
 
           <div
             onClick={() => setOpen(!open)}
-            className="w-5 relative cursor-pointer flex flex-col gap-1"
+            className="w-5 relative cursor-pointer flex flex-col lg:hidden gap-1"
           >
             <div
               style={{
