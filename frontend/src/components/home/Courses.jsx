@@ -11,14 +11,15 @@ import {
 import { CiHeart } from "react-icons/ci";
 
 const Courses = () => {
-  const [selected, setSelected] = useState("web design");
+  const [selected, setSelected] = useState("All");
   const [filteredCourses, setFilteredCourses] = useState(coursesData);
 
   const handleFilter = (value) => {
-    let newCourses = filteredCourses?.filter((item, index) => {
-      return item.category.toLowerCase() == value;
+    let newCourses = coursesData?.filter((item, index) => {
+      return value == "All"
+        ? coursesData
+        : item.category.toLowerCase() == value;
     });
-
     setFilteredCourses(newCourses);
   };
 
@@ -61,7 +62,7 @@ const Courses = () => {
             return (
               <div
                 key={index}
-                className="rounded-md shadow-xl overflow-hidden h-full flex flex-col"
+                className="rounded-md cursor-pointer shadow-xl overflow-hidden h-full flex flex-col"
               >
                 <img src={item?.image} alt="" />
                 <div className="p-5 flex flex-col h-full">
@@ -81,7 +82,7 @@ const Courses = () => {
                     </span>
                   </div>
 
-                  <h5 className="text-2xl my-2 text-gray-800 font-semibold">
+                  <h5 className="text-2xl transition duration-150 hover:text-green-600  my-2 text-gray-800 font-semibold">
                     {item?.title}
                   </h5>
                   <p className="text-gray-500 mb-2">{item?.desc}</p>

@@ -11,62 +11,62 @@ export const nav_data = [
       {
         id: 2,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 3,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 4,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 5,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 6,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 7,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 8,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 9,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 10,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 11,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 12,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 13,
         title: "Home Default",
-        link: "",
+        link: "/teacher/dashboard",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 16,
@@ -126,7 +126,7 @@ export const nav_data = [
       {
         id: 15,
         title: "About",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 16,
@@ -157,7 +157,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Hero Baner",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 23,
@@ -176,37 +176,37 @@ export const nav_data = [
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Course",
-        link: "",
+        link: "/teacher/dashboard",
       },
       {
         id: 15,
         title: "Shop",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 16,
@@ -237,7 +237,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Help",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 23,
@@ -256,7 +256,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Auth",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 23,
@@ -275,7 +275,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Form",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 22,
@@ -298,7 +298,7 @@ export const nav_data = [
       {
         id: 15,
         title: "Speciality",
-        link: "",
+        link: "/teacher/dashboard",
         subList: [
           {
             id: 23,
@@ -325,67 +325,67 @@ export const nav_data = [
       {
         id: 4234,
         title: "Instructor",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
         subList: [
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
         ],
@@ -393,67 +393,67 @@ export const nav_data = [
       {
         id: 4234,
         title: "Student",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
         subList: [
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
           {
             id: 654635,
             title: "Dashboard",
-            link: "",
+            link: "/teacher/dashboard",
             icon: <FaDashcube />,
           },
         ],
@@ -461,31 +461,31 @@ export const nav_data = [
       {
         id: 4234,
         title: "Admin",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
       },
       {
         id: 4234,
         title: "Edit Profile",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
       },
       {
         id: 4234,
         title: "Settings",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
       },
       {
         id: 4234,
         title: "Delete Profile",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
       },
       {
         id: 4234,
         title: "Dropdown levels",
-        link: "",
+        link: "/teacher/dashboard",
         icon: <FaUser />,
         subList: [
           {

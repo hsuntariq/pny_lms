@@ -1,7 +1,7 @@
 import React from "react";
 import { nav_data } from "./data/navData";
 import { BsThreeDots } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 const NavbarMiddleSection = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const NavbarMiddleSection = () => {
               <span className="hover:text-blue-600 flex items-center gap-2">
                 {item?.title} {item?.icon}
               </span>
-              <ul className="shadow-xl mt-6  hidden  absolute  group-hover:block bg-white rounded-3 w-52 text-gray-500  gap-3">
+              <ul className="shadow-xl mt-6  hidden z-50  absolute  group-hover:block bg-white rounded-3 w-52 text-gray-500  gap-3">
                 {item?.list?.map((item2, index2) => {
                   return (
                     <li className="p-2 px-4 group/sub relative flex justify-between items-center  hover:bg-blue-100">
@@ -28,12 +28,14 @@ const NavbarMiddleSection = () => {
                         className="shadow-xl  opacity-0  absolute top-0 bg-white rounded-md w-52 text-gray-500 gap-3 group-hover/sub:opacity-100  group-hover/sub:translate-x-[90%]"
                       >
                         {item?.list[index2]?.subList?.map((item3, index3) => {
+                          console.log(item3);
+
                           return (
                             <li
                               key={index3}
                               className="p-2 px-4 flex group/subsub relative justify-between items-center hover:bg-blue-100"
                             >
-                              {item3?.title}
+                              <Link to={item3?.link}>{item3?.title}</Link>
 
                               <ul
                                 style={{ transition: "all 0.7s" }}
@@ -45,7 +47,9 @@ const NavbarMiddleSection = () => {
                                       key={index4}
                                       className="p-2 px-4 flex justify-between items-center hover:bg-blue-100"
                                     >
-                                      {item4?.title}
+                                      <Link to={item4?.link}>
+                                        {item4?.title}
+                                      </Link>
                                     </li>
                                   );
                                 })}
