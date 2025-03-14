@@ -3,6 +3,7 @@ import "./globals.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Dashboard from "./pages/teacher/dashboard/Dashboard";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
+        <Toaster />
       </Router>
     </>
   );

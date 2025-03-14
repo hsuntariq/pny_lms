@@ -6,6 +6,7 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { MenuItem, TextField } from "@mui/material";
+import toast from "react-hot-toast";
 import axios from "axios";
 const style = {
   position: "absolute",
@@ -19,10 +20,24 @@ const style = {
   p: 4,
 };
 
+import { useDispatch, useSelector } from "react-redux";
+import { addQuizData, quizReset } from "../../../features/quiz/quizSlice";
+
 export default function CourseModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
+
+  const { quizError, quizMessage } = useSelector((state) => state.quizzes);
+
+  React.useEffect(() => {
+    if (quizError) {
+      toast.error(quizMessage);
+    }
+
+    dispatch(quizReset());
+  }, [quizError]);
 
   const [formFields, setFormFields] = React.useState({
     question: "",
@@ -45,19 +60,29 @@ export default function CourseModal() {
   };
 
   const handleQuiz = async () => {
-    const response = await axios.post(
-      "http://localhost:3001/api/quiz/add-quiz",
-      {
-        question,
-        deadline,
-        time,
-        batch_no,
-        course_name,
-        max_marks,
-      }
-    );
+    // const response = await axios.post(
+    //   "http://localhost:3001/api/quiz/add-quiz",
+    //   {
+    //     question,
+    //     deadline,
+    //     time,
+    //     batch_no,
+    //     course_name,
+    //     max_marks,
+    //   }
+    // );
+    // console.log(response);
 
-    console.log(response);
+    const quizData = {
+      question,
+      deadline,
+      time,
+      batch_no,
+      course_name,
+      max_marks,
+    };
+
+    dispatch(addQuizData(quizData));
   };
 
   return (
