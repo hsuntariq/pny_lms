@@ -1,6 +1,6 @@
 // import these 2 things always in the slice
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addQuiz } from "./quizService";
+import { addQuiz, getQuizzes } from "./quizService";
 
 // define initialState
 
@@ -19,6 +19,17 @@ export const addQuizData = createAsyncThunk(
   async (quizData, thunkAPI) => {
     try {
       return await addQuiz(quizData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getQuizzesData = createAsyncThunk(
+  "get-quizzes",
+  async (_, thunkAPI) => {
+    try {
+      return await getQuizzes();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -52,6 +63,18 @@ export const quizSlice = createSlice({
         state.quizLoading = false;
         state.quizSuccess = true;
         state.quiz.push(action.payload);
+      })
+      .addCase(getQuizzesData.pending, (state, action) => {
+        state.quizLoading = true;
+      })
+      .addCase(getQuizzesData.rejected, (state, action) => {
+        state.quizLoading = false;
+        state.quizError = true;
+        state.quizMessage = action.payload;
+      })
+      .addCase(getQuizzesData.fulfilled, (state, action) => {
+        state.quizLoading = false;
+        state.quiz = action.payload;
       });
   },
 });

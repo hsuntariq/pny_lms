@@ -28,3 +28,8 @@ export const addQuiz = asyncHandler(async (req, res) => {
 
   res.send(newQuiz);
 });
+
+export const getQuizzes = asyncHandler(async (req, res) => {
+  const allQuizzes = await Quiz.find();
+  res.send(allQuizzes);
+});

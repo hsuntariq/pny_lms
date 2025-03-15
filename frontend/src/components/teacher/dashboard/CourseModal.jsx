@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { MenuItem, TextField } from "@mui/material";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,15 +30,9 @@ export default function CourseModal() {
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
 
-  const { quizError, quizMessage } = useSelector((state) => state.quizzes);
-
-  React.useEffect(() => {
-    if (quizError) {
-      toast.error(quizMessage);
-    }
-
-    dispatch(quizReset());
-  }, [quizError]);
+  const { quizError, quizMessage, quizLoading, quizSuccess } = useSelector(
+    (state) => state.quizzes
+  );
 
   const [formFields, setFormFields] = React.useState({
     question: "",
@@ -51,6 +46,27 @@ export default function CourseModal() {
   // dwestructure
   const { question, deadline, time, batch_no, course_name, max_marks } =
     formFields;
+
+  React.useEffect(() => {
+    if (quizError) {
+      toast.error(quizMessage);
+    }
+
+    if (quizSuccess) {
+      toast.success("Quiz Added Successfully!");
+      handleClose();
+      setFormFields({
+        question: "",
+        deadline: "",
+        time: "",
+        batch_no: "",
+        course_name: "",
+        max_marks: "",
+      });
+    }
+
+    dispatch(quizReset());
+  }, [quizError, quizSuccess, dispatch]);
 
   const handleChange = (e) => {
     setFormFields({
@@ -205,17 +221,22 @@ export default function CourseModal() {
               </TextField>
 
               <Button
+                disabled={quizLoading}
                 onClick={handleQuiz}
                 variant="contained"
                 className="bg-green-500 my-3"
                 sx={{
                   margin: "1rem 0",
-                  display: "block",
+                  display: "flex",
                   marginLeft: "auto",
-                  background: "#0CBC87",
+                  background: `${quizLoading ? "gray" : "#0CBC87"}`,
                 }}
               >
-                Add Quiz
+                {quizLoading ? (
+                  <HashLoader size={20} color="white" />
+                ) : (
+                  "Add Quiz"
+                )}
               </Button>
             </div>
           </div>
