@@ -4,7 +4,7 @@ import { getQuizzesData, quizReset } from "../../features/quiz/quizSlice";
 import Skeleton from "react-loading-skeleton";
 import SkeletonQuiz from "./loading/SkeletonQuiz";
 import moment from "moment";
-import { IoCaretForwardSharp } from "react-icons/io5";
+import { IoCaretBackSharp, IoCaretForwardSharp } from "react-icons/io5";
 
 const Quizzess = () => {
   const [selected, setSelected] = useState(0);
@@ -21,12 +21,29 @@ const Quizzess = () => {
   }, []);
 
   const handleForward = () => {
-    if (startNumber < quiz.length) {
-      setStartNumber(startNumber + 5);
-      if (endNumber < quiz.length) {
-        setEndNumber(endNumber + 5);
-      }
-    }
+  
+    // stop if the end number is equals to or greater than the  quizzes length
+
+    if(endNumber >= quiz.length) return
+
+    setStartNumber(startNumber+5)
+    setSelected(startNumber+5)
+    setEndNumber(endNumber + 5)
+
+
+  };
+  const handleBackward = () => {
+  
+    // stop if the end number is equals to or greater than the  quizzes length
+
+    if(startNumber <= 0) return
+
+    setSelected(startNumber - 5);
+
+    setStartNumber(startNumber-5)
+    setEndNumber(endNumber - 5)
+
+
   };
 
   return (
@@ -95,10 +112,16 @@ const Quizzess = () => {
                   </h4>
                 </div>
                 <div className="flex justify-end">
+                  <IoCaretBackSharp
+                    onClick={handleBackward}
+                    cursor={"pointer"}
+                    className="text-purple-600"
+                    size={20}
+                  />
                   <IoCaretForwardSharp
                     onClick={handleForward}
                     cursor={"pointer"}
-                    className="text-blue-600"
+                    className="text-purple-600"
                     size={20}
                   />
                 </div>

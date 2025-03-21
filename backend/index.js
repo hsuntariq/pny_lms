@@ -6,6 +6,7 @@ import { errorHandler } from "./middlewares/errorMiddleware.js";
 import { connectDB } from "./config/connect.js";
 dotenv.config();
 import cors from "cors";
+import userRouter from "./routes/userRoutes.js";
 const app = express();
 
 app.use(cors());
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/quiz/", quizRouter);
+app.use('/api/user',userRouter)
 
 app.use(errorHandler);
 
