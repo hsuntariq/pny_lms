@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/quiz/", quizRouter);
-app.use('/api/user',userRouter)
+app.use("/api/users", userRouter);
 
 app.use(errorHandler);
 
