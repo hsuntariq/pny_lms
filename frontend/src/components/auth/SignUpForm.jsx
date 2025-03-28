@@ -1,9 +1,60 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { regUserData, userReset } from "../../features/users/userSlice";
+import { Hourglass } from "react-loader-spinner";
 const SignUpForm = () => {
+  const [formFields, setFormFields] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    gender: "",
+    c_password: "",
+  });
+
+  const { name, username, email, password, gender, c_password } = formFields;
+
+  const handleChange = (e) => {
+    setFormFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const dispatch = useDispatch();
+
+  const { userError, userSuccess, userMessage, userLoading } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (userError) {
+      toast.error(userMessage);
+    }
+
+    dispatch(userReset());
+  }, [userError]);
+
+  const handleRegister = () => {
+    if (password != c_password) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    const userData = {
+      name,
+      username,
+      email,
+      password,
+      gender,
+    };
+    dispatch(regUserData(userData));
+  };
+
   return (
     <>
       <form className="text-gray-500 my-5">
@@ -13,6 +64,9 @@ const SignUpForm = () => {
             <div className="flex mt-2 bg-gray-100 p-4 rounded-sm gap-4 items-center">
               <FaEnvelope size={20} className="text-gray-400" />
               <input
+                value={name}
+                onChange={handleChange}
+                name="name"
                 type="text"
                 className="outline-0 w-full text-gray-700"
                 placeholder="Name"
@@ -24,6 +78,9 @@ const SignUpForm = () => {
             <div className="flex mt-2 bg-gray-100 p-4 rounded-sm gap-4 items-center">
               <FaEnvelope size={20} className="text-gray-400" />
               <input
+                value={username}
+                onChange={handleChange}
+                name="username"
                 type="text"
                 className="outline-0 w-full text-gray-700"
                 placeholder="Username"
@@ -38,6 +95,9 @@ const SignUpForm = () => {
           <div className="flex mt-2 bg-gray-100 p-4 rounded-sm gap-4 items-center">
             <FaEnvelope size={20} className="text-gray-400" />
             <input
+              value={email}
+              onChange={handleChange}
+              name="email"
               type="email"
               className="outline-0 w-full text-gray-700"
               placeholder="E-Mail"
@@ -52,6 +112,9 @@ const SignUpForm = () => {
             <div className="flex mt-2 bg-gray-100 p-4 rounded-sm gap-4 items-center">
               <FaEnvelope size={20} className="text-gray-400" />
               <input
+                value={password}
+                onChange={handleChange}
+                name="password"
                 type="password"
                 className="outline-0 w-full text-gray-700"
                 placeholder="********"
@@ -64,6 +127,9 @@ const SignUpForm = () => {
             <div className="flex mt-2 bg-gray-100 p-4 rounded-sm gap-4 items-center">
               <FaEnvelope size={20} className="text-gray-400" />
               <input
+                value={c_password}
+                onChange={handleChange}
+                name="c_password"
                 type="password"
                 className="outline-0 w-full text-gray-700"
                 placeholder="********"
@@ -78,21 +144,46 @@ const SignUpForm = () => {
           <div className="grid gap-2 grid-cols-2">
             <div className="flex justify-between p-4 bg-gray-100">
               <label htmlFor="">Male</label>
-              <input type="radio" value="male" name="gender" />
+              <input
+                value={1}
+                onChange={handleChange}
+                name="gender"
+                type="radio"
+              />
             </div>
             <div className="flex justify-between p-4 bg-gray-100">
               <label htmlFor="">Female</label>
-              <input type="radio" value="female" name="gender" />
+              <input
+                value={0}
+                onChange={handleChange}
+                name="gender"
+                type="radio"
+              />
             </div>
           </div>
         </div>
 
         <Button
+          onClick={handleRegister}
           variant="contained"
           className="w-full"
           style={{ margin: "0.5rem 0", padding: "10px" }}
         >
-          Sign Up
+          {userLoading ? (
+            <>
+              <Hourglass
+                visible={true}
+                height="25"
+                width="25"
+                ariaLabel="hourglass-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                colors={["white", "yellow"]}
+              />
+            </>
+          ) : (
+            " Sign Up"
+          )}
         </Button>
 
         <div className="flex items-center my-4 gap-2">

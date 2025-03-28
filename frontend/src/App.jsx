@@ -7,6 +7,7 @@ import StudentDashboard from "./pages/student/dashboard/Dashboard";
 import { Toaster } from "react-hot-toast";
 import "react-loading-skeleton/dist/skeleton.css";
 import SignUp from "./pages/auth/SignUp";
+import SignIn from "./pages/auth/SignIn";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
 
           {/* teacher routes */}
 
