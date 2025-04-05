@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { regUser } from "./userService";
+import { getAllUsers, logUser, regUser, verifyOTP } from "./userService";
 
 // check for user
 
@@ -13,6 +13,7 @@ const initialState = {
   userError: false,
   userSuccess: false,
   userMessage: "",
+  allUsers: [],
 };
 
 // call the service's function
@@ -22,6 +23,38 @@ export const regUserData = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       return await regUser(userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+export const logUserData = createAsyncThunk(
+  "user-login",
+  async (userData, thunkAPI) => {
+    try {
+      return await logUser(userData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getAllUsersData = createAsyncThunk(
+  "all-users",
+  async (_, thunkAPI) => {
+    try {
+      return await getAllUsers();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const verifyOTPData = createAsyncThunk(
+  "user-verify",
+  async (otpData, thunkAPI) => {
+    try {
+      return await verifyOTP(otpData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -56,6 +89,46 @@ export const userSlice = createSlice({
         state.userLoading = false;
         state.userSuccess = true;
         state.user = action.payload;
+      })
+      .addCase(logUserData.pending, (state, action) => {
+        state.userLoading = true;
+      })
+      .addCase(logUserData.rejected, (state, action) => {
+        state.userLoading = false;
+        state.userError = true;
+        state.userMessage = action.payload;
+        state.user = null;
+      })
+      .addCase(logUserData.fulfilled, (state, action) => {
+        state.userLoading = false;
+        state.userSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(verifyOTPData.pending, (state, action) => {
+        state.userLoading = true;
+      })
+      .addCase(verifyOTPData.rejected, (state, action) => {
+        state.userLoading = false;
+        state.userError = true;
+        state.userMessage = action.payload;
+      })
+      .addCase(verifyOTPData.fulfilled, (state, action) => {
+        state.userLoading = false;
+        state.userSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(getAllUsersData.pending, (state, action) => {
+        state.userLoading = true;
+      })
+      .addCase(getAllUsersData.rejected, (state, action) => {
+        state.userLoading = false;
+        state.userError = true;
+        state.userMessage = action.payload;
+      })
+      .addCase(getAllUsersData.fulfilled, (state, action) => {
+        state.userLoading = false;
+        state.userSuccess = true;
+        state.allUsers = action.payload;
       });
   },
 });

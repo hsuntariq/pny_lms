@@ -67,8 +67,26 @@ const generateOTP = () => {
 };
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, username, email, password, gender } = req.body;
-  if (!name || !email || !username || !password || !gender) {
+  const {
+    name,
+    username,
+    email,
+    password,
+    gender,
+    course_name,
+    batch_no,
+    role,
+  } = req.body;
+  if (
+    !name ||
+    !email ||
+    !username ||
+    !password ||
+    !gender ||
+    !batch_no ||
+    !course_name ||
+    !role
+  ) {
     res.status(400);
     throw new Error("Please enter all the fields");
   }
@@ -103,6 +121,9 @@ export const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     gender,
     otp: otp,
+    batch_no,
+    course_name,
+    role,
   });
 
   res.send(createdUser);
@@ -141,4 +162,36 @@ export const loginUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Invalid password");
   }
+});
+
+export const verifyOTP = asyncHandler(async (req, res) => {
+  const user_id = req.params.id;
+  const { otp } = req.body;
+
+  if (!otp) {
+    res.status(400);
+    throw new Error("Please enter OTP");
+  }
+
+  const findUser = await user.findById(user_id);
+
+  if (!findUser) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  if (otp != findUser.otp) {
+    res.status(401);
+    throw new Error("Invalid OTP or OTP expired");
+  }
+
+  findUser.otp = null;
+  // save the user
+  await findUser.save();
+  res.send(findUser);
+});
+
+export const getUsers = asyncHandler(async (req, res) => {
+  let allUsers = await user.find();
+  res.send(allUsers);
 });

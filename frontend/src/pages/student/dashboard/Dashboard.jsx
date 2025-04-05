@@ -7,8 +7,11 @@ import { Button } from "@mui/material";
 import CourseModal from "../../../components/teacher/dashboard/CourseModal";
 import Sidebar from "../../../components/student/Sidebar";
 import Quizzess from "../../../components/student/Quizzess";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <>
       <Nav />
@@ -23,16 +26,24 @@ const Dashboard = () => {
       <div className="container p-3 lg:px-10 mx-auto  grid grid-cols-1 ">
         <div className="flex w-full items-start  gap-3">
           <div className="border -translate-y-[30%] border-2 w-40 aspect-square  overflow-hidden border-green-500 rounded-full   ">
-            <img
-              src="https://themes.stackbros.in/eduport_r/assets/09-1AM4Ze_z.jpg"
-              className="object-cover h-full w-full "
-              alt=""
-            />
+            {user?.gender == 1 ? (
+              <img
+                src="/avatars/male.jpg"
+                className="object-cover h-full w-full "
+                alt=""
+              />
+            ) : (
+              <img
+                src="/avatars/female.svg"
+                className="object-cover h-full w-full "
+                alt=""
+              />
+            )}
           </div>
           <div className="flex flex-col w-full ">
             <div className="flex gap-2 capitalize w-full items-center">
               <h3 className="text-2xl md:text-3xl font-semibold">
-                Lori Stevens
+                {user?.name}
               </h3>
               <TbRosetteDiscountCheckFilled
                 className="translate-y-1"
@@ -62,9 +73,6 @@ const Dashboard = () => {
                     Completed lessons
                   </p>
                 </div>
-              </div>
-              <div className="flex self-start md:self-center p-3  ">
-                <CourseModal />
               </div>
             </div>
           </div>

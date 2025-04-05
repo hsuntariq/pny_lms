@@ -1,9 +1,57 @@
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logUserData, userReset } from "../../features/users/userSlice";
+import toast from "react-hot-toast";
 
 const SignInForm = () => {
+  const [formFields, setFormFields] = useState({
+    u_mail: "",
+    password: "",
+  });
+
+  const { u_mail, password } = formFields;
+
+  const handleChange = (e) => {
+    setFormFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userLoading, userSuccess, userMessage, userError, user } =
+    useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userError) {
+      toast.error(userMessage);
+    }
+
+    if (userSuccess) {
+      // check user role
+      if (user?.role == "student") {
+        navigate("/student/dashboard");
+      } else if (user?.role == "teacher") {
+        navigate("/teacher/dashboard");
+      }
+    }
+
+    dispatch(userReset());
+  }, [userError, userSuccess]);
+
+  const handleLogin = () => {
+    const userData = {
+      u_mail,
+      password,
+    };
+
+    dispatch(logUserData(userData));
+  };
+
   return (
     <>
       <form className="text-gray-500 my-5">
@@ -14,6 +62,9 @@ const SignInForm = () => {
             <FaEnvelope size={20} className="text-gray-400" />
             <input
               type="email"
+              name="u_mail"
+              value={u_mail}
+              onChange={handleChange}
               className="outline-0 w-full text-gray-700"
               placeholder="E-Mail"
             />
@@ -27,6 +78,9 @@ const SignInForm = () => {
             <FaEnvelope size={20} className="text-gray-400" />
             <input
               type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
               className="outline-0 w-full text-gray-700"
               placeholder="********"
             />
@@ -35,6 +89,7 @@ const SignInForm = () => {
         {/* gender */}
 
         <Button
+          onClick={handleLogin}
           variant="contained"
           className="w-full"
           style={{ margin: "0.5rem 0", padding: "10px" }}
